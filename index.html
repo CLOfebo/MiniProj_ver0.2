@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Analytics Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="app-shell">
+        <section class="topbar" aria-label="Dashboard header">
+            <div>
+                <p class="eyebrow">CSV analytics workspace</p>
+                <h1>AI Analytics Dashboard</h1>
+            </div>
+            <div class="status-pill" id="datasetStatus">No dataset</div>
+        </section>
+
+        <section class="workspace">
+            <aside class="side-panel">
+                <form class="upload-panel" id="uploadForm">
+                    <label class="file-picker" for="fileInput">
+                        <span id="fileName">Choose CSV file</span>
+                        <input type="file" id="fileInput" accept=".csv,text/csv">
+                    </label>
+                    <button type="submit" id="uploadButton">Upload</button>
+                    <a class="sample-link" href="sample_sales.csv">sample_sales.csv</a>
+                </form>
+
+                <div class="metric-grid" id="metricGrid"></div>
+
+                <section class="panel">
+                    <div class="panel-heading">
+                        <h2>Dataset Profile</h2>
+                    </div>
+                    <ul class="insight-list" id="profileInsights"></ul>
+                </section>
+
+                <section class="panel">
+                    <div class="panel-heading">
+                        <h2>Columns</h2>
+                    </div>
+                    <div class="column-list" id="columnList"></div>
+                </section>
+            </aside>
+
+            <section class="main-panel">
+                <section class="query-panel">
+                    <form class="query-form" id="queryForm">
+                        <input
+                            type="text"
+                            id="questionInput"
+                            placeholder="Ask: sales by region"
+                            autocomplete="off"
+                        >
+                        <button type="submit" id="queryButton">Ask</button>
+                    </form>
+                    <div class="question-chips" id="questionChips"></div>
+                </section>
+
+                <section class="panel chart-panel">
+                    <div class="panel-heading">
+                        <div>
+                            <h2 id="chartTitle">Upload a CSV to start</h2>
+                            <p id="chartSubtitle">FastAPI, pandas, chart data, and generated insight text.</p>
+                        </div>
+                        <div class="chart-tools" aria-label="Chart display controls">
+                            <span class="chart-badge">Apache ECharts</span>
+                            <div class="segmented-control" id="chartModeControls">
+                                <button type="button" class="active" data-chart-mode="auto">Auto</button>
+                                <button type="button" data-chart-mode="bar">Bar</button>
+                                <button type="button" data-chart-mode="line">Line</button>
+                                <button type="button" data-chart-mode="pie">Pie</button>
+                                <button type="button" data-chart-mode="scatter">Scatter</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="chart"></div>
+                    <p class="result-insight" id="resultInsight"></p>
+                </section>
+
+                <section class="data-panels">
+                    <section class="panel">
+                        <div class="panel-heading">
+                            <h2>Result Table</h2>
+                        </div>
+                        <div class="table-wrap">
+                            <table id="resultTable"></table>
+                        </div>
+                    </section>
+
+                    <section class="panel">
+                        <div class="panel-heading">
+                            <h2>Preview</h2>
+                        </div>
+                        <div class="table-wrap">
+                            <table id="previewTable"></table>
+                        </div>
+                    </section>
+                </section>
+            </section>
+        </section>
+
+        <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
